@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.font-roboto-mono {
+    font-family: var(--font-roboto-mono);
+}
+
+.header-hidden {
+    @apply -translate-y-full transition-transform duration-300;
+}
+
+.header-visible {
+    @apply transition-transform duration-300;
+}
+
+::-webkit-scrollbar {
+    @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply rounded bg-amber-100 hover:bg-amber-200;
+}
+
+.animated-link {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+        background-color: #fde68a;
+    }
+
+    &:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+}

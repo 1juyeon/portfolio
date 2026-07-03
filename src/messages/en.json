@@ -1,0 +1,74 @@
+{
+    "Header": {
+        "link-1": "About",
+        "link-2": "Experience",
+        "link-3": "Projects",
+        "link-4": "Contact"
+    },
+    "Introduction": {
+        "badge": "Hi, I'm",
+        "name": "Juyeon Won",
+        "role": "Backend & Security Solution Engineer",
+        "body": "I single-handedly own the development and maintenance of the security product <strong>PrivKeeper P</strong>, implementing device integrations, concurrency handling, and security features <strong>hands-on</strong>. Lately I've been extending into <strong>RAG/LLM-based automation</strong>.",
+        "cta": "Explore my projects"
+    },
+    "About": {
+        "title": "About Me",
+        "paragraph-1": "I'm a <strong>backend & security engineer</strong> who single-handedly owns the day-to-day of <strong>PrivKeeper P</strong>, an enterprise password-management security product.",
+        "paragraph-2": "I cover everything from development and maintenance to heterogeneous device integration and security certification — a top contributor with <strong>~265 commits</strong> across two repositories. In particular, I fixed real <strong>concurrency and stability issues</strong> (lock acquisition, duplicate-run prevention, recovery on abnormal termination) when changing passwords across many cameras at once.",
+        "paragraph-3": "For the security-function certification, I personally implemented <strong>plaintext masking in logs/backups, TLS 1.2 enforcement, DRBG-based random generation, SHA-256, and large-scale upgrades of OpenSSL, Tomcat, JDK, Spring, and Log4j</strong>.",
+        "paragraph-4": "I enjoy defining recurring field problems myself and solving them with <strong>diagnostic tools (OnviProbe, utilApp)</strong> and <strong>LLM-based incident-response automation</strong>.",
+        "paragraph-5": "I work by narrowing down root causes to the end, grounded in logs and raw response payloads."
+    },
+    "Projects": {
+        "title": "Key Projects",
+        "items": {
+            "onviprobe": {
+                "title": "OnviProbe — ONVIF Camera Diagnostic Tool",
+                "description": "A Go tool I built on my own initiative that predicts whether PrivKeeper can change a given camera's password — without touching the camera. It reproduces the product's ONVIF decision logic, adds an independent ONVIF-standard verdict, and categorizes failure causes into codes.",
+                "link": ""
+            },
+            "utilapp": {
+                "title": "utilApp — Broadcast Encryption (CAS) TS/EMM Analyzer",
+                "description": "An in-house diagnostic tool built with Qt/C++ that inspects broadcast-encryption streams in the field — currently in real internal use. Real-time TS packet analysis, scrambling (encryption) status checks, and EMM reception verification.",
+                "link": ""
+            },
+            "aiauto": {
+                "title": "PrivKeeper Incident-Response Automation (AI · LLM)",
+                "description": "An internal automation tool that auto-classifies customer inquiries/incidents with Gemini·GPT and drafts responses and similar-case references. Designed and built mostly single-handedly as part of an AI capability project.",
+                "link": ""
+            }
+        },
+        "more": {
+            "text": "I've also delivered a RAG-based CCTV anomaly-response solution, a government VLM R&D project (owning the LLM part, ongoing), and security-function certification. Most are internal/security products, so the source is private.",
+            "link": "View my GitHub"
+        }
+    },
+    "FeaturedProject": {
+        "title": "Project"
+    },
+    "Contact": {
+        "title": "Contact Me",
+        "intro": "If you'd like to collaborate on a product, or reach out about a role,",
+        "cta": "you can contact me at wjy6454@naver.com or via the links below."
+    },
+    "EnterpriseSummary": {
+        "title": "Work Experience",
+        "items": {
+            "coretrust": {
+                "titlePrefix": "Backend & Security Solution Engineer —",
+                "titleOrg": "CoreTrust",
+                "meta": "2023 – Present | South Korea",
+                "bullets": [
+                    "Single-handedly own PrivKeeper P, an enterprise password-management security product — development, maintenance, customer technical support, and security certification (~265 commits across two repos, top contributor).",
+                    "Solved real concurrency/stability issues when changing passwords across many cameras at once — lock acquisition & finalize guarantees, duplicate job-code prevention, and state recovery on abnormal termination.",
+                    "Built a new DB password-change feature end to end (page, logic, length constraints, change history, stability).",
+                    "Hands-on security hardening — plaintext masking in logs/backups, TLS 1.2 enforcement & SVMSSDK TLS integration, DRBG random generation, SHA-256, and large-scale upgrades of OpenSSL, libcurl, and Log4j to obtain security-function certification.",
+                    "Analyzed and fixed ONVIF/VMS integration failures based on logs and raw response payloads; continuously expanded supported devices (network switches, cameras, etc.).",
+                    "Built diagnostic tools (OnviProbe, utilApp) and LLM-based incident-response automation to streamline repetitive work."
+                ],
+                "tags": ["Java", "Spring", "PostgreSQL", "ONVIF/SOAP", "TLS", "DRBG", "Go", "Qt/C++", "Python", "LLM"]
+            }
+        }
+    }
+}

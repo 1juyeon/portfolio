@@ -1,0 +1,74 @@
+{
+    "Header": {
+        "link-1": "소개",
+        "link-2": "경력",
+        "link-3": "프로젝트",
+        "link-4": "연락처"
+    },
+    "Introduction": {
+        "badge": "안녕하세요, 저는",
+        "name": "원주연입니다",
+        "role": "백엔드 · 보안 솔루션 엔지니어",
+        "body": "보안 솔루션 <strong>PrivKeeper P</strong>의 개발·유지보수를 단독으로 담당하며, 이기종 장비 연동·동시성 처리·보안 기능을 <strong>직접 구현</strong>해 왔습니다. 최근에는 <strong>RAG/LLM</strong> 기반 자동화까지 영역을 넓히고 있습니다.",
+        "cta": "프로젝트 보러가기"
+    },
+    "About": {
+        "title": "소개",
+        "paragraph-1": "패스워드 관리 보안 제품 <strong>PrivKeeper P</strong>의 실무를 단독으로 담당해 온 <strong>백엔드 · 보안 엔지니어</strong>입니다.",
+        "paragraph-2": "제품의 개발·유지보수부터 이기종 장비 연동, 보안 인증까지 폭넓게 맡으며 두 저장소에 <strong>약 265개의 커밋</strong>을 남긴 팀 상위 기여자입니다. 특히 다수 카메라 동시 비밀번호 변경 환경에서 <strong>동시성·안정성 문제</strong>(락 획득·중복 실행 방지·비정상 종료 복구)를 직접 해결했습니다.",
+        "paragraph-3": "보안기능확인서 취득 과정에서는 <strong>로그·백업 평문 마스킹, TLS 1.2 적용, DRBG 난수 생성, SHA-256, OpenSSL·Tomcat·JDK·Spring·Log4j 대규모 업그레이드</strong>를 직접 구현했습니다.",
+        "paragraph-4": "반복되는 현장 문제를 스스로 정의하고 <strong>진단 도구(OnviProbe · utilApp)</strong>와 <strong>LLM 기반 장애대응 자동화</strong>로 해결하는 것을 즐깁니다.",
+        "paragraph-5": "로그와 응답 전문을 근거로 문제의 원인을 끝까지 좁혀 나가는 방식으로 일합니다."
+    },
+    "Projects": {
+        "title": "주요 프로젝트",
+        "items": {
+            "onviprobe": {
+                "title": "OnviProbe — ONVIF 카메라 진단 도구",
+                "description": "카메라를 건드리지 않고 PrivKeeper의 비밀번호 변경 가능 여부를 사전에 예측하는 진단 도구. 현장의 필요성을 스스로 느껴 Go로 직접 개발했습니다. 제품의 ONVIF 처리 로직을 재현하고 표준 기준 독립 판정을 함께 제공해, 실패 원인을 카테고리 코드로 분류합니다.",
+                "link": ""
+            },
+            "utilapp": {
+                "title": "utilApp — 방송 암호화(CAS) TS/EMM 분석 도구",
+                "description": "방송 암호화 스트림을 현장에서 점검하는 사내 진단 도구를 Qt/C++로 직접 개발했고, 현재 사내에서 실제로 사용되고 있습니다. 실시간 TS 패킷 분석, 스크램블링(암호화) 적용 여부 확인, EMM 수신 여부·값 확인 기능을 구현했습니다.",
+                "link": ""
+            },
+            "aiauto": {
+                "title": "PrivKeeper 장애 대응 자동화 (AI · LLM)",
+                "description": "담당 제품의 고객 문의·장애를 Gemini·GPT로 자동 분류하고 대응 초안·유사 사례를 생성하는 사내 자동화 도구. AI 역량강화 프로젝트에서 대부분 단독으로 설계·개발했습니다.",
+                "link": ""
+            }
+        },
+        "more": {
+            "text": "이 외에도 CCTV 이상행동 대응 RAG 솔루션, 정부 R&D(VLM) 과제(LLM 파트 담당, 진행 중), 보안기능확인서 취득 등을 수행했습니다. 대부분 사내·보안 제품이라 소스는 비공개입니다.",
+            "link": "GitHub 보기"
+        }
+    },
+    "FeaturedProject": {
+        "title": "프로젝트"
+    },
+    "Contact": {
+        "title": "연락처",
+        "intro": "새로운 제품이나 협업, 채용 관련 문의가 있으시면 언제든 연락 주세요.",
+        "cta": "wjy6454@naver.com 또는 아래 링크로 연락하실 수 있습니다."
+    },
+    "EnterpriseSummary": {
+        "title": "경력",
+        "items": {
+            "coretrust": {
+                "titlePrefix": "백엔드 · 보안 솔루션 엔지니어 —",
+                "titleOrg": "코어트러스트 (CoreTrust)",
+                "meta": "2023 – 현재 | 대한민국",
+                "bullets": [
+                    "패스워드 관리 보안 솔루션 PrivKeeper P의 실무를 단독으로 담당 — 개발·유지보수·고객 기술지원·보안 인증까지 (두 저장소 약 265커밋, 팀 상위 기여자).",
+                    "다수 카메라 동시 비밀번호 변경 환경의 동시성·안정성 문제 해결 — 락 획득·finalize 보장, jobCode 중복 발급 방지, 비정상 종료 시 상태 복구.",
+                    "DB 비밀번호 변경 기능을 신규로 단독 개발 (페이지·기능·길이 제한·변경 이력·안정성 개선).",
+                    "보안 강화 직접 구현 — 로그/백업 평문 마스킹, TLS 1.2 적용·SVMSSDK TLS 연동, DRBG 난수 생성, SHA-256, OpenSSL·libcurl·Log4j 대규모 업그레이드로 보안기능확인서 발급.",
+                    "ONVIF·VMS 연동 장애를 로그·응답 전문 기반으로 분석·수정, 네트워크 스위치·카메라 등 지원 장비 지속 확장.",
+                    "진단 도구(OnviProbe · utilApp)와 LLM 기반 장애대응 자동화를 직접 개발해 반복 업무를 효율화."
+                ],
+                "tags": ["Java", "Spring", "PostgreSQL", "ONVIF/SOAP", "TLS", "DRBG", "Go", "Qt/C++", "Python", "LLM"]
+            }
+        }
+    }
+}
