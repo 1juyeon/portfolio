@@ -14,33 +14,48 @@
     },
     "About": {
         "title": "About Me",
-        "paragraph-1": "I'm a <strong>backend & security engineer</strong> who single-handedly owns the day-to-day of <strong>PrivKeeper P</strong>, an enterprise password-management security product.",
-        "paragraph-2": "I cover everything from development and maintenance to heterogeneous device integration and security certification — a top contributor with <strong>~265 commits</strong> across two repositories. In particular, I fixed real <strong>concurrency and stability issues</strong> (lock acquisition, duplicate-run prevention, recovery on abnormal termination) when changing passwords across many cameras at once.",
-        "paragraph-3": "For the security-function certification, I personally implemented <strong>plaintext masking in logs/backups, TLS 1.2 enforcement, DRBG-based random generation, SHA-256, and large-scale upgrades of OpenSSL, Tomcat, JDK, Spring, and Log4j</strong>.",
-        "paragraph-4": "I enjoy defining recurring field problems myself and solving them with <strong>diagnostic tools (OnviProbe, utilApp)</strong> and <strong>LLM-based incident-response automation</strong>.",
-        "paragraph-5": "I work by narrowing down root causes to the end, grounded in logs and raw response payloads."
+        "paragraph-1": "I'm a <strong>backend & security engineer</strong> who, when I hit friction or repetitive problems at work, doesn't just let them slide — I <strong>build tools</strong> to make things more convenient and productive.",
+        "paragraph-2": "For example, instead of analyzing after the fact why each camera's password change failed, I built <strong>OnviProbe</strong>, a tool that predicts the outcome in advance; and to quickly inspect broadcast-encryption streams in the field, I built <strong>utilApp</strong>, now in real internal use.",
+        "paragraph-3": "I applied the same mindset to repetitive customer-incident handling, turning it into a tool that <strong>auto-classifies inquiries and drafts responses with an LLM</strong>. I pick up new tech by asking, 'what can I make easier with this?'",
+        "paragraph-4": "As my main work, I <strong>solely own PrivKeeper P</strong>, a password-management security solution — security-function certification, maintenance, field support, and new development — and I'm currently owning the <strong>RAG/LLM part of a government R&D VLM project</strong>.",
+        "paragraph-5": "When something breaks, I narrow the root cause down to the end using logs and raw payloads — and along the way I'm always thinking, 'next time, I could automate this.'"
     },
     "Projects": {
         "title": "Key Projects",
         "items": {
+            "privkeeperp": {
+                "title": "PrivKeeper P — Password-Management Security Solution (main work)",
+                "description": "A security product that automatically manages accounts and passwords across diverse devices (cameras, VMS, network gear, servers). I own it end to end — development, security certification, and on-site support — and my strength is digging into device/protocol problems from evidence while keeping it secure and stable.",
+                "link": ""
+            },
             "onviprobe": {
                 "title": "OnviProbe — ONVIF Camera Diagnostic Tool",
-                "description": "A Go tool I built on my own initiative that predicts whether PrivKeeper can change a given camera's password — without touching the camera. It reproduces the product's ONVIF decision logic, adds an independent ONVIF-standard verdict, and categorizes failure causes into codes.",
+                "description": "A Go tool I built on my own initiative to cut down on recurring field issues — it predicts whether PrivKeeper can change a given camera's password without touching the camera. It reproduces the product's ONVIF decision logic, adds an independent ONVIF-standard verdict, and categorizes failure causes into codes.",
                 "link": ""
             },
             "utilapp": {
                 "title": "utilApp — Broadcast Encryption (CAS) TS/EMM Analyzer",
-                "description": "An in-house diagnostic tool built with Qt/C++ that inspects broadcast-encryption streams in the field — currently in real internal use. Real-time TS packet analysis, scrambling (encryption) status checks, and EMM reception verification.",
+                "description": "A tool I built that's now in real internal use — a Qt/C++ diagnostic app that lets you check, on site, whether a broadcast (CAS) stream is encrypted and whether EMM is being received. Another case of 'if it's inconvenient, I build it.'",
                 "link": ""
             },
             "aiauto": {
                 "title": "PrivKeeper Incident-Response Automation (AI · LLM)",
-                "description": "An internal automation tool that auto-classifies customer inquiries/incidents with Gemini·GPT and drafts responses and similar-case references. Designed and built mostly single-handedly as part of an AI capability project.",
+                "description": "An internal automation tool I built while learning to apply LLMs — it auto-classifies customer inquiries/incidents with Gemini·GPT and drafts responses and similar-case references.",
                 "link": ""
             }
         },
+        "others": {
+            "title": "Other Projects",
+            "items": {
+                "cctv": {
+                    "title": "CCTV Anomaly-Response RAG Solution (Government R&D · VLM Project)",
+                    "description": "Owning the RAG/LLM part of a government R&D VLM project. Building a RAG knowledge base from guideline documents and designing an auto-generation pipeline (ChromaDB + embeddings + local LLM) for situational action recommendations and reports; currently preparing for performance evaluation.",
+                    "tags": ["Python", "RAG", "LLM", "ChromaDB"]
+                }
+            }
+        },
         "more": {
-            "text": "I've also delivered a RAG-based CCTV anomaly-response solution, a government VLM R&D project (owning the LLM part, ongoing), and security-function certification. Most are internal/security products, so the source is private.",
+            "text": "Most of the projects above are internal/security products, so the source is private.",
             "link": "View my GitHub"
         }
     },
@@ -56,18 +71,16 @@
         "title": "Work Experience",
         "items": {
             "coretrust": {
-                "titlePrefix": "Backend & Security Solution Engineer —",
+                "titlePrefix": "Backend & Security Engineer —",
                 "titleOrg": "CoreTrust",
-                "meta": "2023 – Present | South Korea",
+                "meta": "2023.05 – Present | South Korea",
                 "bullets": [
-                    "Single-handedly own PrivKeeper P, an enterprise password-management security product — development, maintenance, customer technical support, and security certification (~265 commits across two repos, top contributor).",
-                    "Solved real concurrency/stability issues when changing passwords across many cameras at once — lock acquisition & finalize guarantees, duplicate job-code prevention, and state recovery on abnormal termination.",
-                    "Built a new DB password-change feature end to end (page, logic, length constraints, change history, stability).",
-                    "Hands-on security hardening — plaintext masking in logs/backups, TLS 1.2 enforcement & SVMSSDK TLS integration, DRBG random generation, SHA-256, and large-scale upgrades of OpenSSL, libcurl, and Log4j to obtain security-function certification.",
-                    "Analyzed and fixed ONVIF/VMS integration failures based on logs and raw response payloads; continuously expanded supported devices (network switches, cameras, etc.).",
-                    "Built diagnostic tools (OnviProbe, utilApp) and LLM-based incident-response automation to streamline repetitive work."
+                    "After joining, contributed to GS (Good Software) certification and project wrap-up of PrivKeeper M — a C# product that masks license plates and faces in video and re-saves it as a de-identified file.",
+                    "Then took sole ownership of PrivKeeper P, a password-management security solution — security-function certification, maintenance, field support, and new feature development.",
+                    "Work broadly across heterogeneous device integration (cameras, VMS, network gear) and security features (encryption, authentication, sessions), keeping the product stable.",
+                    "Currently owning the RAG/LLM part of a government R&D VLM project."
                 ],
-                "tags": ["Java", "Spring", "PostgreSQL", "ONVIF/SOAP", "TLS", "DRBG", "Go", "Qt/C++", "Python", "LLM"]
+                "tags": ["Java", "Spring", "PostgreSQL", "C#", "ONVIF/SOAP", "Security Cert", "RAG/LLM"]
             }
         }
     }
