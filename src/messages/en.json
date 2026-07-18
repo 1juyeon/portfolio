@@ -9,23 +9,23 @@
         "badge": "Hi, I'm",
         "name": "Juyeon Won",
         "role": "Backend & Security Solution Engineer",
-        "body": "I single-handedly own the development and maintenance of the security product <strong>PrivKeeper P</strong>, implementing device integrations, concurrency handling, and security features <strong>hands-on</strong>. Lately I've been extending into <strong>RAG/LLM-based automation</strong>.",
+        "body": "I solely own <strong>PrivKeeper</strong>, a unified password-management solution for CCTV/surveillance environments, leading <strong>root-cause analysis</strong> across the Java–JNI–C++ boundary, the national security-function verification, and a full legacy-stack modernization.",
         "cta": "Explore my projects"
     },
     "About": {
         "title": "About Me",
-        "paragraph-1": "I'm a <strong>backend & security engineer</strong> who, when I hit friction or repetitive problems at work, doesn't just let them slide — I <strong>build tools</strong> to make things more convenient and productive.",
-        "paragraph-2": "For example, instead of analyzing after the fact why each camera's password change failed, I built <strong>OnviProbe</strong>, a tool that predicts the outcome in advance; and to quickly inspect broadcast-encryption streams in the field, I built <strong>utilApp</strong>, now in real internal use.",
-        "paragraph-3": "I applied the same mindset to repetitive customer-incident handling, turning it into a tool that <strong>auto-classifies inquiries and drafts responses with an LLM</strong>. I pick up new tech by asking, 'what can I make easier with this?'",
-        "paragraph-4": "As my main work, I <strong>solely own PrivKeeper P</strong>, a password-management security solution — security-function certification, maintenance, field support, and new development — and I'm currently owning the <strong>RAG/LLM part of a government R&D VLM project</strong>.",
-        "paragraph-5": "When something breaks, I narrow the root cause down to the end using logs and raw payloads — and along the way I'm always thinking, 'next time, I could automate this.'"
+        "paragraph-1": "I'm a <strong>backend & security engineer</strong> whose strength is tracing failures that span Java, JNI, native C++, external SDKs, and the network all the way down to the <strong>real root cause</strong>.",
+        "paragraph-2": "I've been the sole owner of <strong>PrivKeeper</strong> (Java web + C++/JNI), a unified password-management solution for CCTV/surveillance environments — across its full lifecycle, from feature development to the <strong>national security-function verification</strong>, full legacy-stack modernization, and field response.",
+        "paragraph-3": "I work from the principle that 'even if the log says success, you must cross-verify the real state' — digging into problems based on <strong>actual behavior and evidence</strong>, not the surface result.",
+        "paragraph-4": "I lead security work (finding and fixing vulnerabilities, applied cryptography) and EOL-library modernization end to end — <strong>risk analysis → phased rollout → verification</strong> — and I integrate heterogeneous devices with wildly different vendors and protocols into an extensible structure.",
+        "paragraph-5": "When something is inconvenient or repetitive, I don't let it slide — I <strong>build tools myself</strong> (OnviProbe, utilApp) to improve it, and I apply new tech (LLM/RAG) directly to real work and projects."
     },
     "Projects": {
         "title": "Key Projects",
         "items": {
             "privkeeperp": {
-                "title": "PrivKeeper P — Password-Management Security Solution (main work)",
-                "description": "A security product that automatically manages accounts and passwords across diverse devices (cameras, VMS, network gear, servers). I own it end to end — development, security certification, and on-site support — and my strength is digging into device/protocol problems from evidence while keeping it secure and stable.",
+                "title": "PrivKeeper — Unified Password-Management Solution (main work)",
+                "description": "I solely own PrivKeeper, a unified password-management solution for CCTV/surveillance environments (Java web + C++/JNI). I built automatic password changes across heterogeneous devices and led the national security-function verification and a full legacy-stack modernization (JDK 25, Spring 7). Root-cause analysis across the Java–JNI–C++ boundary is my strength.",
                 "link": ""
             },
             "onviprobe": {
@@ -67,20 +67,49 @@
         "intro": "If you'd like to collaborate on a product, or reach out about a role,",
         "cta": "you can contact me at wjy6454@naver.com or via the links below."
     },
+    "Education": {
+        "title": "Education & Training",
+        "items": {
+            "training": {
+                "name": "C++ Image-Processing Developer Program — Korea Software Industry Association",
+                "meta": "Jul 2022 – Feb 2023",
+                "notes": [
+                    "Built a medical-imaging (dental X-ray) pre/post-processing viewer — grand prize at the final project showcase.",
+                    "Solid C++ foundations: CUDA parallel programming, Qt GUI, SQLite, and TCP/IP sockets."
+                ]
+            },
+            "univ": {
+                "name": "B.S. in Biomedical Engineering — Konyang University",
+                "meta": "Mar 2018 – Feb 2022",
+                "notes": ["Participated in an undergraduate research group on U-Net-based cell detection/counting (intro to deep learning & medical imaging)."]
+            },
+            "license": {
+                "name": "Medical Device Engineer License (의공기사)",
+                "meta": "Dec 2021",
+                "notes": []
+            },
+            "cswp": {
+                "name": "CSWP — Certified SOLIDWORKS Professional",
+                "meta": "Aug 2021",
+                "notes": []
+            }
+        }
+    },
     "EnterpriseSummary": {
         "title": "Work Experience",
         "items": {
             "coretrust": {
-                "titlePrefix": "Backend & Security Engineer —",
+                "titlePrefix": "Backend & Security Engineer (PrivKeeper) —",
                 "titleOrg": "CoreTrust",
                 "meta": "2023.05 – Present | South Korea",
                 "bullets": [
-                    "After joining, contributed to GS (Good Software) certification and project wrap-up of PrivKeeper M — a C# product that masks license plates and faces in video and re-saves it as a de-identified file.",
-                    "Then took sole ownership of PrivKeeper P, a password-management security solution — security-function certification, maintenance, field support, and new feature development.",
-                    "Work broadly across heterogeneous device integration (cameras, VMS, network gear) and security features (encryption, authentication, sessions), keeping the product stable.",
-                    "Currently owning the RAG/LLM part of a government R&D VLM project."
+                    "Sole owner of PrivKeeper, a unified password-management solution for CCTV/surveillance environments (Java web + C++/JNI native), across its full lifecycle — feature development, the national security-function verification, library modernization, and field response (~110 commits over 2.5 years in the web repo).",
+                    "Expanded managed devices from cameras → Linux/Windows servers → network switches, designing switches so a new device is supported just by adding a JSON template from the console output — no code changes.",
+                    "Handled the national security-function verification — adapting product features to the national security guidelines (integrity verification, session/account security, audit logs) and reconciling the submitted deliverables with the code.",
+                    "Modernized the legacy stack end to end — from libcurl/OpenSSL/Log4j/PostgreSQL/JDBC to a JDK 25 + Tomcat 11 + Spring/Security 7 + Jakarta migration, via risk analysis → phased rollout → traffic-capture verification.",
+                    "Early on, handled GS certification for a video-anonymization product (PrivKeeper M, C#); currently owning the RAG/LLM part of a government R&D VLM project."
                 ],
-                "tags": ["Java", "Spring", "PostgreSQL", "C#", "ONVIF/SOAP", "Security Cert", "RAG/LLM"]
+                "tags": ["Java", "Spring Security", "JNI/C++", "PostgreSQL", "ONVIF", "TLS/DRBG", "Security Verification"]
             }
         }
     }

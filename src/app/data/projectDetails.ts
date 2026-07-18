@@ -11,64 +11,134 @@ export type ProjectDetail = {
 export const projectDetails: Record<string, { ko: ProjectDetail; en: ProjectDetail }> = {
     privkeeperp: {
         ko: {
-            title: "PrivKeeper P — 패스워드 관리 보안 솔루션",
-            subtitle: "메인 업무 · 단독 담당 · 2023.11 – 현재",
+            title: "PrivKeeper — 비밀번호 통합 관리 보안 솔루션",
+            subtitle: "메인 업무 · 단독 담당 · Java 웹 + C++/JNI 네이티브",
             image: "/screenshots/privkeeperp.png",
             overview:
-                "카메라·VMS·네트워크 장비·서버 등 이기종 장비의 계정과 비밀번호를 정책에 따라 자동으로 관리하는 보안 제품입니다. 웹 애플리케이션부터 암호화 모듈, 외부 장비 연동, 설치·운영 환경까지 제품의 거의 모든 층을 혼자 맡아 개발·유지보수·고객 대응·보안 인증을 책임지고 있습니다.",
+                "CCTV·관제 환경의 비밀번호 통합 관리 솔루션 PrivKeeper를 담당합니다. Java 웹 애플리케이션(PrivKeeper P)과 C++/JNI 네이티브 모듈(PrivKeeper 1.5)로 이루어진 하나의 제품을, 카메라·리눅스/윈도우 서버·네트워크 스위치·VMS 등 이기종 장치의 비밀번호 자동 변경 기능부터 국가 보안기능 확인서 발급, 라이브러리 현대화, 현장 이슈 대응까지 전 주기에 걸쳐 담당했습니다. 웹 저장소 기준 2년 6개월간 커밋 110여 건을 반영했습니다.",
             sections: [
                 {
-                    heading: "제품을 혼자 책임지는 오너십",
+                    heading: "주요 성과",
                     items: [
-                        "특정 기능만이 아니라 개발·유지보수·고객 현장 대응·보안 인증까지 제품 전 과정을 단독으로 맡고 있습니다. 한 부분만 아는 게 아니라 제품 전체 구조를 이해하고 운영합니다.",
+                        "관리 대상 장치 전방위 확장 — 카메라 → 리눅스/윈도우 서버 → 네트워크 스위치. 스위치는 제조사·모델마다 콘솔 명령이 달라, 현장에서 콘솔 출력만 확인하면 JSON 템플릿 추가로 신규 장비를 지원하는 구조로 설계해 코드 수정 없이 대응 범위를 넓혔습니다.",
+                        "국가 보안기능 확인서 발급 대응 — 국정원 보안 가이드(국가용 보안요구사항)에 맞게 제품 기능을 보완·수정했습니다. 무결성 검증 추가, 세션·계정 보안 개선, 전 기능 감사 로그 확보 등 코드 차원의 대응과 함께, 제출 산출물(취약점 개선 내역서·보안기능 구현명세서·제품 설명서·자체 시험 결과서)을 실제 코드와 일치하게 검토·정비했습니다.",
+                        "레거시 스택 전면 현대화 — libcurl·OpenSSL·Log4j·PostgreSQL·JDBC 교체에 이어 JDK 25 + Tomcat 11 + Spring/Security 7 + Jakarta 전환까지 수행. 위험도 분석으로 로드맵을 세우고, 교체 후 실제 통신을 캡처·검증해 안정성을 확보했습니다.",
+                        "제품 보안성 강화 — 비밀번호 생성 규칙에 국가 보안 기준(연속·반복·역순·직전 재사용 금지)을 반영하고, 난수 생성을 안전한 방식(DRBG)으로 교체했으며, 세션 하이재킹·자동 로그인 우회 같은 실제 취약점을 직접 찾아 막았습니다.",
                     ],
                 },
                 {
-                    heading: "장비·프로토콜이 얽힌 문제를 근거로 해결",
+                    heading: "사례 1 — 비밀번호가 '성공했는데 실패한' 미스터리 (SVMS 동기화 불일치)",
                     items: [
-                        "제조사마다 다른 카메라·VMS의 비표준 동작을, 겉으로 드러난 결과가 아니라 응답 전문과 로그를 근거로 끝까지 파고들어 원인을 규명합니다.",
-                        "예를 들어 비밀번호는 실제로 변경됐는데 응답이 비표준이라 실패로 처리되던 문제를, 실제 장비 동작까지 확인해 바로잡았습니다. 이런 프로토콜 레벨 디버깅이 제 강점입니다.",
+                        "상황: 현장에서 카메라 비밀번호를 바꾼 뒤 일부 카메라 영상이 끊기는 장애가 발생. 로그상으로는 변경이 성공/롤백된 것으로 보였습니다.",
+                        "접근: 제품·카메라·VMS 세 곳의 비밀번호 상태를 교차 비교하고 Java–JNI–C++ 호출 흐름을 끝까지 추적. 제품·카메라는 옛 비밀번호로 되돌렸는데 VMS에만 새 비밀번호가 남는 '조용한 불일치(silent drift)'가 일어나는 경로를 찾아, 비동기 COM 호출이 실패로 보고된 뒤에도 실제로는 서버에 반영되는 시나리오를 가설로 세웠습니다.",
+                        "결과: 원인 가설·재현 조건·점검 우선순위를 담은 분석 보고서를 작성해 유사 장애 진단 기준으로 삼고, '로그가 성공이라고 찍혀도 실제 상태를 대조 검증해야 한다'는 관점을 팀에 공유했습니다.",
                     ],
                 },
                 {
-                    heading: "보안과 안정성",
+                    heading: "사례 2 — 테스트할 카메라가 없는 상태에서 라이브러리 업그레이드 검증",
                     items: [
-                        "보안기능확인서 취득을 이끌며 암호화·난수(DRBG)·TLS·핵심 오픈소스 최신화까지, 제품 보안을 실제 인증을 통과할 수 있는 수준으로 정비했습니다.",
-                        "다수 장비를 동시에 처리하는 환경에서 경합·중복 실행·비정상 종료에도 견디도록 안정성을 확보하는 데 신경 씁니다.",
+                        "상황: libcurl·OpenSSL을 새 버전으로 교체한 뒤, 실제 카메라가 없어 통신이 정상인지 확인하기 어려운 상황.",
+                        "접근: 카메라 통신의 핵심 요소(HTTPS 핸드셰이크·자체 서명 인증서·Digest 인증·TLS 1.2 강제)를 공개 테스트 서버로 재현해 하나씩 검증하고, 실제 통신을 패킷 캡처해 지문(JA3/JA4)과 cipher 목록까지 분석해 세 개의 통신 경로가 의도대로 동작함을 증거로 입증했습니다.",
+                        "결과: 물리 장비 없이도 업그레이드 안전성을 확인해 배포를 진행했고, 검증 절차를 문서로 남겨 다음 라이브러리 교체 때 재사용할 수 있게 했습니다.",
+                    ],
+                },
+                {
+                    heading: "사례 3 — 원인이 20가지로 갈리는 SDK 초기화 오류",
+                    items: [
+                        "상황: VMS 연동 SDK가 '로딩 실패'/'초기화 실패'라는 모호한 코드만 남기고 멈추는 장애.",
+                        "접근: 오류 코드가 실제로 세팅되는 지점을 역추적한 뒤, 가능한 원인을 COM 등록·권한·비트 불일치·네트워크·인증·타임아웃 등 20여 가지로 체계적으로 분류하고, 현장에서 빠르게 좁혀갈 수 있는 점검 순서를 만들었습니다.",
+                        "결과: '어디부터 봐야 할지 모르겠는' 장애를 순서대로 진단할 수 있는 체크리스트로 바꿔 현장 대응 시간을 줄였습니다.",
+                    ],
+                },
+                {
+                    heading: "사례 4 — 카메라마다 다른 인증 방식으로 비밀번호 변경 실패",
+                    items: [
+                        "상황: 특정 제조사 카메라에서 ONVIF 비밀번호 변경이 인증 단계에서 실패.",
+                        "접근: 카메라마다 받아들이는 인증 방식이 다르다는 점에 착안해, 여러 인증 방식을 순서대로 자동 시도하는 폴백 구조를 넣고, 어떤 방식에서 통과/실패했는지 로그로 남겨 원인이 바로 보이도록 했습니다.",
+                        "결과: 그동안 '왜 안 되는지 모르던' 카메라들의 실패 지점을 눈으로 확인하게 되었고, 같은 모델의 다른 카메라 이슈도 빠르게 진단하게 됐습니다.",
+                    ],
+                },
+                {
+                    heading: "사례 5 — 세션 값만 복사하면 남의 계정에 접근되는 취약점",
+                    items: [
+                        "상황: 같은 네트워크에서 세션 식별자를 복사·붙여넣기하면 다른 사용자의 계정에 접근되는 문제.",
+                        "접근·결과: 세션 재사용에 IP 등 추가 조건을 걸어 탈취를 차단하고, 전 기능에 감사 로그를 남겨 보안 검증 기준을 충족시켰습니다. 자동 로그인 우회·로그인 실패 계정 잠금 오류 등 인증 관련 취약점도 함께 정비했습니다.",
+                    ],
+                },
+                {
+                    heading: "사례 6 — 최신 윈도우에서만 재현되는 서버 비밀번호 변경 실패",
+                    items: [
+                        "상황: 윈도우 최신 버전(24H2)에서 서버 비밀번호 변경이 실패하는 현장 이슈.",
+                        "접근·결과: OS 버전 변화에 따른 동작 차이를 원인으로 좁혀 수정했고, 랜덤 비밀번호 생성이 특정 조건에서 무한 반복에 빠지던 문제도 함께 잡아 안정성을 높였습니다.",
                     ],
                 },
             ],
-            tech: ["Java", "Spring MVC", "JSP", "PostgreSQL", "JDBC", "Jasypt", "JNI (C/C++)", "ONVIF", "SOAP/gSOAP", "VMS SDK", "TLS", "DRBG", "Apache Tomcat"],
+            tech: ["Java", "Spring / Spring Security", "JSP", "PostgreSQL", "JNI (C/C++)", "ONVIF", "SUNAPI", "SSH", "TLS", "DRBG", "OpenSSL / libcurl", "Tomcat 11", "JDK 25"],
         },
         en: {
-            title: "PrivKeeper P — Password-Management Security Solution",
-            subtitle: "Main work · Sole owner · Nov 2023 – Present",
+            title: "PrivKeeper — Unified Password-Management Security Solution",
+            subtitle: "Main work · Sole owner · Java web + C++/JNI native",
             image: "/screenshots/privkeeperp.png",
             overview:
-                "A security product that automatically manages the accounts and passwords of diverse devices — cameras, VMS, network gear, servers — by policy. I own nearly every layer of it on my own: the web app, the crypto module, external device integrations, and the install/operation environment, along with development, maintenance, customer support, and security certification.",
+                "I own PrivKeeper, a unified password-management solution for CCTV/surveillance environments. It's a single product made of a Java web application (PrivKeeper P) and a C++/JNI native module (PrivKeeper 1.5), and I've handled its full lifecycle — from automatic password changes across heterogeneous devices (cameras, Linux/Windows servers, network switches, VMS) to the national security-function verification, library modernization, and field issues. I've contributed ~110 commits over 2.5 years in the web repository.",
             sections: [
                 {
-                    heading: "Full product ownership",
+                    heading: "Key achievements",
                     items: [
-                        "I own the entire product — development, maintenance, on-site customer support, and security certification — not just a single feature. I understand and operate the whole thing, not one corner of it.",
+                        "Expanded the managed device scope across the board — cameras → Linux/Windows servers → network switches. Since switch console commands differ by vendor/model, I designed it so a new device can be supported just by adding a JSON template after checking the console output in the field — extending coverage without code changes.",
+                        "Handled the national security-function verification — adapting product features to the national intelligence agency's security guidelines: added integrity verification, improved session/account security, ensured audit logs across all features, and reconciled the submitted deliverables (vulnerability-fix report, security-function spec, product manual, self-test results) with the actual code.",
+                        "Modernized the legacy stack end to end — upgraded libcurl, OpenSSL, Log4j, PostgreSQL, and JDBC, then carried out a large migration to JDK 25 + Tomcat 11 + Spring/Security 7 + Jakarta. I planned a roadmap from a risk analysis and verified stability by capturing real traffic afterward.",
+                        "Strengthened product security — applied national security rules to password generation (no sequences, repeats, reversals, or immediate reuse), replaced randomness with a safe scheme (DRBG), and found and fixed real vulnerabilities such as session hijacking and auto-login bypass.",
                     ],
                 },
                 {
-                    heading: "Solving device/protocol problems from evidence",
+                    heading: "Case 1 — The 'succeeded but failed' password mystery (SVMS sync drift)",
                     items: [
-                        "When cameras and VMS from different vendors behave in non-standard ways, I dig into raw responses and logs — not just the surface result — to find the real cause.",
-                        "For example, I fixed a case where a password had actually changed but a non-standard response was treated as a failure, by verifying the device's real behavior. This kind of protocol-level debugging is a core strength of mine.",
+                        "Situation: After changing camera passwords in the field, some camera streams went black, even though the logs showed the change as succeeded/rolled back.",
+                        "Approach: I cross-compared the password state across the product, the camera, and the VMS, and traced the Java–JNI–C++ call flow to the end. I found a path where the product and camera reverted to the old password but only the VMS kept the new one — a silent drift — and hypothesized that an async COM call was actually applied on the server even after being reported as failed.",
+                        "Result: I wrote an analysis report with the hypothesis, reproduction conditions, and inspection priorities, which became the reference for diagnosing similar failures. I shared the lesson: 'even if the log says success, you must cross-verify the real state.'",
                     ],
                 },
                 {
-                    heading: "Security and stability",
+                    heading: "Case 2 — Verifying a library upgrade with no test cameras available",
                     items: [
-                        "I led the security-function certification, getting the product's security (encryption, DRBG randomness, TLS, core OSS upgrades) to a level that actually passes certification.",
-                        "I care about stability under load — making the system withstand contention, duplicate runs, and abnormal termination when handling many devices at once.",
+                        "Situation: After upgrading libcurl/OpenSSL, there were no real cameras to confirm the communication still worked.",
+                        "Approach: I reproduced the core elements of camera communication (HTTPS handshake, self-signed certificates, Digest auth, forced TLS 1.2) against public test servers and verified them one by one — then packet-captured real traffic and analyzed fingerprints (JA3/JA4) and cipher lists to prove, with evidence, that all three communication paths behaved as intended.",
+                        "Result: Confirmed the upgrade was safe without physical devices and shipped it, leaving the verification procedure documented for reuse in the next library upgrade.",
+                    ],
+                },
+                {
+                    heading: "Case 3 — An SDK init error with 20 possible causes",
+                    items: [
+                        "Situation: The VMS integration SDK would stop with only a vague 'load failure'/'init failure' code.",
+                        "Approach: I traced back to where the error code is actually set, then systematically classified the possible causes into ~20 (COM registration, permissions, bitness mismatch, network, auth, timeout, etc.) and built an inspection order to narrow it down quickly in the field.",
+                        "Result: Turned a 'where do I even start' failure into a step-by-step checklist, reducing field response time.",
+                    ],
+                },
+                {
+                    heading: "Case 4 — Password change failing due to per-camera auth differences",
+                    items: [
+                        "Situation: On certain vendor cameras, ONVIF password changes failed at the authentication step.",
+                        "Approach: Noting that each camera accepts a different auth method, I added a fallback that tries several auth methods in order and logs which one passed/failed so the cause is immediately visible.",
+                        "Result: The failure points of previously mysterious cameras became visible, and similar issues on other cameras of the same model could be diagnosed quickly.",
+                    ],
+                },
+                {
+                    heading: "Case 5 — Account access by simply copying a session value",
+                    items: [
+                        "Situation: On the same network, copying and pasting a session identifier granted access to another user's account.",
+                        "Approach & result: I bound session reuse to extra conditions (such as IP) to block hijacking and added audit logs across all features to meet the security verification criteria. I also cleaned up related auth vulnerabilities, including auto-login bypass and a login-failure account-lock bug.",
+                    ],
+                },
+                {
+                    heading: "Case 6 — Server password change failing only on the latest Windows",
+                    items: [
+                        "Situation: A field issue where server password changes failed on the latest Windows (24H2).",
+                        "Approach & result: I narrowed the cause to behavioral differences across OS versions and fixed it, and also resolved a case where random password generation could fall into an infinite loop under certain conditions.",
                     ],
                 },
             ],
-            tech: ["Java", "Spring MVC", "JSP", "PostgreSQL", "JDBC", "Jasypt", "JNI (C/C++)", "ONVIF", "SOAP/gSOAP", "VMS SDK", "TLS", "DRBG", "Apache Tomcat"],
+            tech: ["Java", "Spring / Spring Security", "JSP", "PostgreSQL", "JNI (C/C++)", "ONVIF", "SUNAPI", "SSH", "TLS", "DRBG", "OpenSSL / libcurl", "Tomcat 11", "JDK 25"],
         },
     },
 

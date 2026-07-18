@@ -1,6 +1,7 @@
 import Introduction from "./Introduction";
 import EnterpriseSummary from "./EnterpriseSummary";
 import About from "./About";
+import Education from "./Education";
 import Projects from "./Projects";
 import Contact from "./Contact";
 
@@ -10,6 +11,7 @@ export default function Main() {
             <Introduction />
             <About />
             <EnterpriseSummary />
+            <Education />
             <Projects />
             <Contact />
         </main>

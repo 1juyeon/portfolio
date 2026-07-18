@@ -21,7 +21,7 @@ export default function About() {
                     <p className="pt-4">{t.rich("paragraph-5", { strong: (chunks) => <strong className="text-slate-200">{chunks}</strong> })}</p>
                 </div>
                 <Tilt options={defaultTiltOptions} className="mt-2 flex items-start justify-center xl:w-5/12">
-                    <Image src="/me.jpeg" width={350} height={350} alt={"Picture of me"} className="rounded-xl border border-slate-600 shadow-xl" />
+                    <Image src="/profile.jpeg" width={320} height={411} alt={"원주연 프로필 사진"} className="rounded-xl border border-slate-600 shadow-xl" />
                 </Tilt>
             </motion.div>
         </section>
